@@ -1,0 +1,12 @@
+body {
+	background-color: #ccc;
+}
+
+#view-btn,
+#add-btn {
+	display: inline-block;
+}
+
+#view-btn {
+	padding-right: 10px;
+}
