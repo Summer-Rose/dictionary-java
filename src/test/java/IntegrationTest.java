@@ -52,4 +52,15 @@ public class IntegrationTest extends FluentTest {
     click("button", withText("View Dictionary"));
     assertThat(pageSource()).contains("Awesome Sauce");
   }
+
+  @Test
+  public void definitionPageDisplaysWordTest() {
+    goTo("http://localhost:4567/");
+    click("button", withText("Add New Word"));
+    fill("#word").with("Awesome Sauce");
+    click("button", withText("Add"));
+    click("button", withText("View Dictionary"));
+    click("button", withText("View Definitions"));
+    assertThat(pageSource()).contains("Awesome Sauce");
+  }
 }
