@@ -22,4 +22,25 @@ public class IntegrationTest extends FluentTest {
   	goTo("http://localhost:4567/");
   	assertThat(pageSource()).contains("Create Your Dictionary");
   }
+
+  @Test
+  public void wordsAreDisplayedOnDictionaryPageTest() {
+    goTo("http://localhost:4567/");
+    click("button", withText("View Words"));
+    assertThat(pageSource()).contains("Your Dictionary");
+  }
+
+  @Test
+  public void goBackButtonReturnsToIndexTest() {
+    goTo("http://localhost:4567/dictionary");
+    click("button", withText("Go Back"));
+    assertThat(pageSource()).contains("Create Your Dictionary");
+  }
+
+  @Test
+  public void addWordPageDisplaysTest() {
+    goTo("http://localhost:4567/");
+    click("button", withText("Add New Word"));
+    assertThat(pageSource()).contains("Add A New Word");
+  }
 }

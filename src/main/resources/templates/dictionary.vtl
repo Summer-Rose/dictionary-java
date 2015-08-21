@@ -1,0 +1,17 @@
+<h2 class="well">Your Dictionary</h2>
+
+<form action="/">
+  <button type="submit" class="btn btn-info">Go Back</button>
+</form>
+
+<table class="table table-striped">
+#foreach ($word in $words)
+  <tr>
+    <td>$word.getWord()</td>
+    <td>
+      <form action="">
+        <button type="submit" class="btn btn-success">View Definitions</button>
+      </form>
+    </td>
+  </tr>
+#end
