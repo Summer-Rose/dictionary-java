@@ -19,4 +19,10 @@ public class WordTest {
     Word testWord = new Word("Summer");
     assertEquals("Summer", testWord.getWord());
   }
+
+  @Test
+  public void Word_returnsWordId() {
+    Word testWord = new Word("Summer");
+    assertTrue(Word.all().size() == testWord.getId());
+  }
 }
