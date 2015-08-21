@@ -12,7 +12,8 @@ body {
 
 #view-btn,
 #back,
-#add {
+#add,
+#add-def {
 	padding-right: 10px;
 }
 

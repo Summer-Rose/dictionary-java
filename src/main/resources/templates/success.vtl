@@ -2,14 +2,22 @@
 
 #if ($word)
   <p>Your word has been added</p>
+#elseif ($definition)
+  <p>Your definition has beeen added</p>
 #end
 
 <form action="/" id="back">
   <button type="submit" class="btn btn-info">Go Home</button>
 </form>
+#if ($word)
 <form action="/dictionary/new" id="add">
   <button type="submit" class="btn btn-info">Add Another Word</button>
 </form>
+#elseif ($definition)
+<form action="/word/$word.getId()/definition/new" id="add">
+  <button type="submit" class="btn btn-info">Add Another Definition</button>
+</form>
+#end
 <form action="/dictionary" id="view">
   <button type="submit" class="btn btn-info">View Dictionary</button>
 </form>

@@ -1,1 +1,16 @@
 <h2 class="well">Definitions for $word.getWord()</h2>
+
+<table class="table table-striped">
+  #foreach ($definition in $word.getDefinitions())
+    <tr>
+      <td>$definition.getDefinition()</td>
+    </tr>
+  #end
+</table>
+
+<form action="/word/$word.getId()/definition/new" id="add-def">
+  <button type="submit" class="btn btn-success">Add Definition</button>
+</form>
+<form action="/dictionary" id="add-def-back">
+  <button type="submit" class="btn btn-success">Go Back</button>
+</form>
