@@ -25,4 +25,16 @@ public class DefinitionTest {
 		Definition testDefinition = new Definition("The coolest person and hottest season");
 		assertTrue(Definition.all().size() == testDefinition.getId());
 	}
+
+	@Test
+	public void find_returnsNullWhenNoDefinitionIsFound_null() {
+		assertTrue(Definition.find(111) == null);
+	}
+
+	@Test
+	public void clear_emptiesAllDefinitionsFromArrayList() {
+		Definition myDefinition = new Definition("The coolest person and hottest season");
+		Definition.clear();
+		assertEquals(Definition.all().size(), 0);
+	}
 }
