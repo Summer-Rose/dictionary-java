@@ -12,15 +12,9 @@ public class App {
     	String layout = "templates/layout.vtl";
 
         get("/", (request, response) -> {
-            HashMap<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "templates/index.vtl");
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
-
-        get("/dictionary", (request, response) -> {
-          HashMap<String, Object> model  = new HashMap<String, Object>();
+          HashMap<String, Object> model = new HashMap<String, Object>();
           model.put("words", Word.all());
-          model.put("template", "templates/dictionary.vtl");
+          model.put("template", "templates/index.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
@@ -41,7 +35,7 @@ public class App {
 
         get("/word/:id", (request, response) -> {
           HashMap<String, Object> model  = new HashMap<String, Object>();
-          Definition definition = Definition.find(Integer.parseInt(request.params(":id"))); 
+          Definition definition = Definition.find(Integer.parseInt(request.params(":id")));
           model.put("word", Word.find(Integer.parseInt(request.params(":id"))));
           model.put("template", "templates/definition.vtl");
           return new ModelAndView(model, layout);
