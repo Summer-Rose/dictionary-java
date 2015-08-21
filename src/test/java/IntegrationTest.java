@@ -33,7 +33,7 @@ public class IntegrationTest extends FluentTest {
   @Test
   public void goBackButtonReturnsToIndexTest() {
     goTo("http://localhost:4567/dictionary");
-    click("button", withText("Go Back"));
+    click("button", withText("Go Home"));
     assertThat(pageSource()).contains("Create Your Dictionary");
   }
 
@@ -42,5 +42,14 @@ public class IntegrationTest extends FluentTest {
     goTo("http://localhost:4567/");
     click("button", withText("Add New Word"));
     assertThat(pageSource()).contains("Add A New Word");
+  }
+
+  @Test
+  public void addedWordsDisplay() {
+    goTo("http://localhost:4567/dictionary/new");
+    fill("#word").with("Awesome Sauce");
+    click("button", withText("Add"));
+    click("button", withText("View Dictionary"));
+    assertThat(pageSource()).contains("Awesome Sauce");
   }
 }

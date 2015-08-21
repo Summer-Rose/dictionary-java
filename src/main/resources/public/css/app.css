@@ -3,10 +3,19 @@ body {
 }
 
 #view-btn,
-#add-btn {
+#add-btn,
+#back,
+#add,
+#view {
 	display: inline-block;
 }
 
-#view-btn {
+#view-btn,
+#back,
+#add {
 	padding-right: 10px;
+}
+
+#home {
+	padding-bottom: 10px;
 }
