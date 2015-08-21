@@ -24,9 +24,24 @@ public class App {
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
-        get("/add-word", (request, response) -> {
-          HashMap<String, Object> model = new HashMap<String, Object>();
+        get("/dictionary/new", (request, response) -> {
+          HashMap<String, Object> model  = new HashMap<String, Object>();
           model.put("template", "templates/add-word.vtl");
+          return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        // get("/add-word", (request, response) -> {
+        //   HashMap<String, Object> model = new HashMap<String, Object>();
+        //   model.put("template", "templates/add-word.vtl");
+        //   return new ModelAndView(model, layout);
+        // }, new VelocityTemplateEngine());
+
+        post("/dictionary", (request, response) -> {
+          HashMap<String, Object> model  = new HashMap<String, Object>();
+          String word = request.queryParams("word");
+          Word newWord = new Word(word);
+          model.put("word", word);
+          model.put("template", "templates/success.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
       }
