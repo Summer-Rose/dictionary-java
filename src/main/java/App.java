@@ -27,6 +27,7 @@ public class App {
         post("/dictionary", (request, response) -> {
           HashMap<String, Object> model  = new HashMap<String, Object>();
           String word = request.queryParams("word");
+          //String definition = request.queryParams("definition");
           Word newWord = new Word(word);
           model.put("word", word);
           model.put("template", "templates/success.vtl");
@@ -54,6 +55,7 @@ public class App {
           String definition = request.queryParams("definition");
           Definition newDefinition = new Definition(definition);
           newWord.addDefinition(newDefinition);
+          model.put("definition", definition);
           model.put("word", newWord);
           model.put("template", "templates/success.vtl");
           return new ModelAndView(model, layout);

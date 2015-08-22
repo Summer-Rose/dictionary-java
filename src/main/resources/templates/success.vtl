@@ -1,20 +1,18 @@
-<h1>Success!</h1>
-
-#if ($word)
-  <p>Your word has been added</p>
-#elseif ($definition)
-  <p>Your definition has beeen added</p>
+#if ($definition)
+  <h3 class="well">Your definition has been added</h3>
+#elseif ($word)
+  <h3 class="well">Your word has been added</h3>
 #end
 
 <form action="/" id="back">
   <button type="submit" class="btn btn-info">Go Home</button>
 </form>
-#if ($word)
-<form action="/dictionary/new" id="add">
-  <button type="submit" class="btn btn-info">Add Another Word</button>
-</form>
-#elseif ($definition)
+#if ($definition)
 <form action="/word/$word.getId()/definition/new" id="add">
   <button type="submit" class="btn btn-info">Add Another Definition</button>
+</form>
+#elseif ($word)
+<form action="/dictionary/new" id="add">
+  <button type="submit" class="btn btn-info">Add Another Word</button>
 </form>
 #end

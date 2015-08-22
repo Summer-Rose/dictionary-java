@@ -30,12 +30,12 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Add A New Word");
   }
 
-  // @Test
-  // public void goBackButtonReturnsToIndexTest() {
-  //   goTo("http://localhost:4567/dictionary/new");
-  //   click("button", withText("Go Home"));
-  //   assertThat(pageSource()).contains("Your Dictionary");
-  // }
+  @Test
+  public void goBackButtonReturnsToIndexTest() {
+    goTo("http://localhost:4567/dictionary/new");
+    click("button", withText("Go Back"));
+    assertThat(pageSource()).contains("Your Dictionary");
+  }
 
   @Test
   public void addWordSubmitBringsToSuccesPage() {
@@ -45,32 +45,52 @@ public class IntegrationTest extends FluentTest {
     assertThat(pageSource()).contains("Your word has been added");
   }
 
-  // @Test
-  // public void definitionPageDisplaysWordTest() {
-  //   goTo("http://localhost:4567/");
-  //   click("button", withText("Add New Word"));
-  //   fill("#word").with("Awesome Sauce");
-  //   click("button", withText("Add"));
-  //   click("button", withText("View Dictionary"));
-  //   click("button", withText("View Definitions"));
-  //   assertThat(pageSource()).contains("Awesome Sauce");
-  // }
-  //
-  // @Test
-  // public void definitionsDisplayedOnDefinitionsPage() {
-  //   goTo("http://localhost:4567/");
-  //   click("button", withText("Add New Word"));
-  //   fill("#word").with("Summer");
-  //   click("button", withText("Add"));
-  //   click("button", withText("Home"));
-  //   assertThat(pageSource()).contains("Summer");
+  @Test
+  public void addedWordIsDisplayedOnMainPage() {
+    goTo("http://localhost:4567/dictionary/new");
+    fill("#word").with("Summer");
+    click("button", withText("Add"));
+    click("button", withText("Go Home"));
+    assertThat(pageSource()).contains("Summer");
+  }
 
-    // click("button", withText("View Definitions"));
-    // click("button", withText("Add Definition"));
-    // fill("#definition").with("Coolest Person Ever");
-    // submit(".btn");
-    // click("button", withText("View Dictionary"));
-    // click("button", withText("View Definitions"));
-    // assertThat(pageSource()).contains("Coolest Person Ever");
+  @Test
+  public void multipleAddedWordsAreDisplayedOnMainPage() {
+    goTo("http://localhost:4567/dictionary/new");
+    fill("#word").with("Summer");
+    click("button", withText("Add"));
+    click("button", withText("Add Another Word"));
+    fill("#word").with("Awesome Sauce");
+    click("button", withText("Add"));
+    click("button", withText("Go Home"));
+    assertThat(pageSource()).contains("Summer");
+    assertThat(pageSource()).contains("Awesome Sauce");
+  }
 
+  @Test
+  public void viewDefinitionsPageDispalysWordDefinition() {
+    goTo("http://localhost:4567/dictionary/new");
+    fill("#word").with("Summer");
+    click("button", withText("Add"));
+    click("button", withText("Go Home"));
+    click("button", withText("View Definitions"));
+    click("button", withText("Add Definition"));
+    fill("#definition").with("Coolest person ever");
+    submit(".btn");
+    click("button", withText("Go Home"));
+    click("button", withText("View Definitions"));
+    assertThat(pageSource()).contains("Coolest person ever");
+  }
+  @Test
+  public void definitionAddedSuccessPageDisplaysCorrectMessage() {
+    goTo("http://localhost:4567/dictionary/new");
+    fill("#word").with("Summer");
+    click("button", withText("Add"));
+    click("button", withText("Go Home"));
+    click("button", withText("View Definitions"));
+    click("button", withText("Add Definition"));
+    fill("#definition").with("Coolest person ever");
+    submit(".btn");
+    assertThat(pageSource()).contains("Your definition has been added");
+  }
 }
